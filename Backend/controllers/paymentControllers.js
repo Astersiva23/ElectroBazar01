@@ -12,7 +12,7 @@ export const stripeCheckoutSession = catchAysncErrors(
     const line_items = body?.orderItems?.map((item) => {
       return {
         price_data: {
-          currency: "usd",
+          currency: "INR",
           product_data: {
             name: item?.name,
             images: [item?.image],
@@ -46,6 +46,7 @@ export const stripeCheckoutSession = catchAysncErrors(
         },
       ],
       line_items,
+      billing_address_collection: "required",
     });
 
     res.status(200).json({
